@@ -1,0 +1,13 @@
+[
+  {"foodSystem": "all", "transport": "bus", "numberOfDays": 5, "price": 300, "type": "shopping"},
+  {"foodSystem": "all", "transport": "ship", "numberOfDays": 10, "price": 500, "type": "cruise"},
+  {"foodSystem": "all", "transport": "ship", "numberOfDays": 10, "price": 100, "type": "cruise"},
+  {"foodSystem": "all", "transport": "bus", "numberOfDays": 10, "price": 200, "type": "shopping"},
+  {"foodSystem": "all", "transport": "airplane", "numberOfDays": 30, "price": 1000, "type": "medical"},
+  {"foodSystem": "all", "transport": "airplane", "numberOfDays": 7, "price": 600, "type": "relaxation"},
+  {"foodSystem": "all", "transport": "train", "numberOfDays": 30, "price": 900, "type": "medical"},
+  {"foodSystem": "all", "transport": "airplane", "numberOfDays": 15, "price": 800, "type": "relaxation"},
+  {"foodSystem": "all", "transport": "bus", "numberOfDays": 7, "price": 300, "type": "excursion"},
+  {"foodSystem": "all", "transport": "train", "numberOfDays": 5, "price": 100, "type": "excursion"}
+]
+
