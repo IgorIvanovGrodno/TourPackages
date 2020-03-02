@@ -1,7 +1,7 @@
 package utils;
 
 import com.google.gson.*;
-import entity.TourPackage;
+import model.domain.TourPackage;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;

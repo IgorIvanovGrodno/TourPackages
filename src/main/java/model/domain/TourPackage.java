@@ -1,4 +1,4 @@
-package entity;
+package model.domain;
 
 import java.util.Objects;
 
@@ -7,6 +7,7 @@ public abstract class TourPackage implements Comparable<TourPackage> {
     private String transport;
     private int numberOfDays;
     private int price;
+    protected static TourPackageType type;
 
     public TourPackage(String foodSystem, String transport, int numberOfDays, int price) {
         this.foodSystem = foodSystem;
@@ -45,6 +46,10 @@ public abstract class TourPackage implements Comparable<TourPackage> {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public TourPackageType getType() {
+        return type;
     }
 
     public int compareTo(TourPackage p){

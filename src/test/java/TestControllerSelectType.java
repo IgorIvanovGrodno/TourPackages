@@ -1,5 +1,5 @@
-import entity.*;
-import exceptions.TourPackageNullRepositoryException;
+import exceptions.TourPackageNullDAOException;
+import model.domain.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class TestControllerSelectType {
         List<TourPackage> actualList = null;
         try {
             actualList = getTourPackageController().createSortedListTourPackages("", "",0, "cruise");
-        } catch (TourPackageNullRepositoryException e) {
+        } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
         List<CruiseTourPackage> expectedList= Arrays.asList(
@@ -28,7 +28,7 @@ public class TestControllerSelectType {
         List<TourPackage> actualList = null;
         try {
             actualList = getTourPackageController().createSortedListTourPackages("", "",0, "shopping");
-        } catch (TourPackageNullRepositoryException e) {
+        } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
         List<ShoppingTourPackage> expectedList= Arrays.asList(
@@ -42,7 +42,7 @@ public class TestControllerSelectType {
         List<TourPackage> actualList = null;
         try {
             actualList = getTourPackageController().createSortedListTourPackages("", "",0, "excursion");
-        } catch (TourPackageNullRepositoryException e) {
+        } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
         List<ExcursionTourPackage> expectedList= Arrays.asList(
@@ -56,7 +56,7 @@ public class TestControllerSelectType {
         List<TourPackage> actualList = null;
         try {
             actualList = getTourPackageController().createSortedListTourPackages("", "",0, "medical");
-        } catch (TourPackageNullRepositoryException e) {
+        } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
         List<MedicalTourPackage> expectedList= Arrays.asList(
@@ -70,7 +70,7 @@ public class TestControllerSelectType {
         List<TourPackage> actualList = null;
         try {
             actualList = getTourPackageController().createSortedListTourPackages("", "",0, "relaxation");
-        } catch (TourPackageNullRepositoryException e) {
+        } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
         List<RelaxationTourPackage> expectedList= Arrays.asList(
@@ -84,7 +84,7 @@ public class TestControllerSelectType {
         int sizeActual = 0;
         try {
             sizeActual  = getTourPackageController().createSortedListTourPackages("all", "bus",7, "qwerty").size();
-        } catch (TourPackageNullRepositoryException e) {
+        } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
         Assert.assertEquals(0,sizeActual);

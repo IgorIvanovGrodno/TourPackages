@@ -3,14 +3,14 @@ package utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import entity.*;
-import model.TourPackageRepository;
+import model.domain.*;
+import model.DAO.TourPackageDAO;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-public class TourPackageRepositoryMock implements TourPackageRepository {
+public class TourPackageDAOMock implements TourPackageDAO {
     private static List<TourPackage> tours;
 
     static {
@@ -41,7 +41,7 @@ public class TourPackageRepositoryMock implements TourPackageRepository {
 
     }
 
-    public List<TourPackage> getTours() {
+    public List<TourPackage> getTourPackages() {
         return tours;
     }
 }

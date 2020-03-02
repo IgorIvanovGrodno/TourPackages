@@ -1,8 +1,8 @@
 package controller;
 
-import entity.*;
-import exceptions.TourPackageNullRepositoryException;
-import model.TourPackageRepository;
+import exceptions.TourPackageNullDAOException;
+import model.domain.*;
+import model.DAO.TourPackageDAO;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import java.util.ArrayList;
@@ -11,26 +11,26 @@ import java.util.stream.Collectors;
 
 public class TourPackageController {
     final static Logger logger = Logger.getLogger(TourPackageController.class);
-    private TourPackageRepository tourPackageRepository;
+    private TourPackageDAO tourPackageDAO;
 
     static {
         PropertyConfigurator.configure("./src/main/resources/log4j.properties");
     }
 
-    public TourPackageController(TourPackageRepository tourPackageRepository) {
-        this.tourPackageRepository = tourPackageRepository;
+    public TourPackageController(TourPackageDAO tourPackageDAO) {
+        this.tourPackageDAO = tourPackageDAO;
     }
 
-    public List<TourPackage> createSortedListTourPackages(final String foodSystem, final String transport, final int numberOfDays, String typeTourPackage) throws TourPackageNullRepositoryException {
+    public List<TourPackage> createSortedListTourPackages(final String foodSystem, final String transport, final int numberOfDays, String typeTourPackage) throws TourPackageNullDAOException {
 
         logger.info("Start execution method");
 
-        if(tourPackageRepository==null) {
-            logger.error("Repository is null");
-            throw new TourPackageNullRepositoryException("TourPackageRepository can't be null");
+        if(tourPackageDAO ==null) {
+            logger.error("TourPackageDAO is null");
+            throw new TourPackageNullDAOException();
         }
 
-        List<TourPackage> tours = (List<TourPackage>) tourPackageRepository.getTours();
+        List<TourPackage> tours = (List<TourPackage>) tourPackageDAO.getTourPackages();
 
         if(typeTourPackage!=null&&!typeTourPackage.isEmpty()) {
             switch (typeTourPackage.toLowerCase()) {
@@ -70,15 +70,15 @@ public class TourPackageController {
 
     }
 
-    public TourPackageRepository getTourPackageRepository() {
-        return tourPackageRepository;
+    public TourPackageDAO getTourPackageDAO() {
+        return tourPackageDAO;
     }
 
-    public void setTourPackageRepository(TourPackageRepository tourPackageRepository) throws TourPackageNullRepositoryException {
-        if(tourPackageRepository==null) {
-            logger.error("Repository is null");
-            throw new TourPackageNullRepositoryException("TourPackageRepository can't be null");
+    public void setTourPackageDAO(TourPackageDAO tourPackageDAO) throws TourPackageNullDAOException {
+        if(tourPackageDAO ==null) {
+            logger.error("TourPackageDAO is null");
+            throw new TourPackageNullDAOException();
         }
-        this.tourPackageRepository = tourPackageRepository;
+        this.tourPackageDAO = tourPackageDAO;
     }
 }
