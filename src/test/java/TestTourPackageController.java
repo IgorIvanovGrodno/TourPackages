@@ -14,7 +14,7 @@ public class TestTourPackageController {
     public void testSelectFoodSystem(){
         int sizeActual = 0;
         try {
-            sizeActual = getTourPackageController().createSortedListTourPackages("all", "", 0, "").size();
+            sizeActual = getTourPackageController().createSortedListTourPackages("all", "", 0, null).size();
         } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
@@ -24,7 +24,7 @@ public class TestTourPackageController {
     public void testSelectNoExistingFoodSystem(){
         int sizeActual = 0;
         try {
-            sizeActual = getTourPackageController().createSortedListTourPackages("qwerty", "", 0, "").size();
+            sizeActual = getTourPackageController().createSortedListTourPackages("qwerty", "", 0, null).size();
         } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
@@ -35,7 +35,7 @@ public class TestTourPackageController {
     public void testSelectTransport(){
         int sizeActual = 0;
         try {
-            sizeActual = getTourPackageController().createSortedListTourPackages("", "airplane", 0, "").size();
+            sizeActual = getTourPackageController().createSortedListTourPackages("", "airplane", 0, null).size();
         } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class TestTourPackageController {
     public void testSelectNoExistingTransport(){
         int sizeActual = 0;
         try {
-            sizeActual = getTourPackageController().createSortedListTourPackages("", "qwerty", 0, "").size();
+            sizeActual = getTourPackageController().createSortedListTourPackages("", "qwerty", 0, null).size();
         } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class TestTourPackageController {
     public void testSelectNumberOfDays(){
         int sizeActual = 0;
         try {
-            sizeActual = getTourPackageController().createSortedListTourPackages("", "", 7, "").size();
+            sizeActual = getTourPackageController().createSortedListTourPackages("", "", 7, null).size();
         } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
@@ -67,12 +67,83 @@ public class TestTourPackageController {
     public void testSelectNoExistingNumberOfDays(){
         int sizeActual = 0;
         try {
-            sizeActual = getTourPackageController().createSortedListTourPackages("", "", 365, "").size();
+            sizeActual = getTourPackageController().createSortedListTourPackages("", "", 365, null).size();
         } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
         Assert.assertEquals(0,sizeActual);
     }
+
+    @Test
+    public void testSelectCruiseType(){
+        List<TourPackage> actualList = null;
+        try {
+            actualList = getTourPackageController().createSortedListTourPackages("", "",0, TourPackageType.CRUISE);
+        } catch (TourPackageNullDAOException e) {
+            e.printStackTrace();
+        }
+        List<CruiseTourPackage> expectedList= Arrays.asList(
+                new CruiseTourPackage("all", "ship",10, 100),
+                new CruiseTourPackage("all", "ship",10, 500));
+        Assert.assertArrayEquals(new List[]{expectedList}, new List[]{actualList});
+    }
+
+    @Test
+    public void testSelectShoppingType(){
+        List<TourPackage> actualList = null;
+        try {
+            actualList = getTourPackageController().createSortedListTourPackages("", "",0, TourPackageType.SHOPPING);
+        } catch (TourPackageNullDAOException e) {
+            e.printStackTrace();
+        }
+        List<ShoppingTourPackage> expectedList= Arrays.asList(
+                new ShoppingTourPackage("all", "bus",10, 200),
+                new ShoppingTourPackage("all", "bus",5, 300));
+        Assert.assertArrayEquals(new List[]{expectedList}, new List[]{actualList});
+    }
+
+    @Test
+    public void testSelectExcursionType(){
+        List<TourPackage> actualList = null;
+        try {
+            actualList = getTourPackageController().createSortedListTourPackages("", "",0, TourPackageType.EXCURSION);
+        } catch (TourPackageNullDAOException e) {
+            e.printStackTrace();
+        }
+        List<ExcursionTourPackage> expectedList= Arrays.asList(
+                new ExcursionTourPackage("all", "train", 5, 100),
+                new ExcursionTourPackage("all", "bus", 7, 300));
+        Assert.assertArrayEquals(new List[]{expectedList}, new List[]{actualList});
+    }
+
+    @Test
+    public void testSelectMedicalType(){
+        List<TourPackage> actualList = null;
+        try {
+            actualList = getTourPackageController().createSortedListTourPackages("", "",0, TourPackageType.MEDICAL);
+        } catch (TourPackageNullDAOException e) {
+            e.printStackTrace();
+        }
+        List<MedicalTourPackage> expectedList= Arrays.asList(
+                new MedicalTourPackage("all", "train", 30, 900),
+                new MedicalTourPackage("all", "airplane", 30, 1000));
+        Assert.assertArrayEquals(new List[]{expectedList}, new List[]{actualList});
+    }
+
+    @Test
+    public void testSelectRelaxationType(){
+        List<TourPackage> actualList = null;
+        try {
+            actualList = getTourPackageController().createSortedListTourPackages("", "",0, TourPackageType.RELAXATION);
+        } catch (TourPackageNullDAOException e) {
+            e.printStackTrace();
+        }
+        List<RelaxationTourPackage> expectedList= Arrays.asList(
+                new RelaxationTourPackage("all", "airplane", 7, 600),
+                new RelaxationTourPackage("all", "airplane", 15, 800));
+        Assert.assertArrayEquals(new List[]{expectedList}, new List[]{actualList});
+    }
+
     @Test
     public void testNullParams(){
         int sizeActual = 0;
@@ -88,7 +159,7 @@ public class TestTourPackageController {
     public void testEmptyParams(){
         int sizeActual = 0;
         try {
-            sizeActual = getTourPackageController().createSortedListTourPackages("", "", 0, "").size();
+            sizeActual = getTourPackageController().createSortedListTourPackages("", "", 0, null).size();
         } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
@@ -99,7 +170,7 @@ public class TestTourPackageController {
     public void testSortedAllTourPackages(){
         List<TourPackage> actualList = null;
         try {
-            actualList = getTourPackageController().createSortedListTourPackages("", "", 0, "");
+            actualList = getTourPackageController().createSortedListTourPackages("", "", 0, null);
         } catch (TourPackageNullDAOException e) {
             e.printStackTrace();
         }
@@ -120,7 +191,7 @@ public class TestTourPackageController {
     @Test(expected = TourPackageNullDAOException.class)
     public void testNullDAOException() throws TourPackageNullDAOException {
         TourPackageController tourPackageController =new TourPackageController(null);
-        tourPackageController.createSortedListTourPackages("","",0,"");
+        tourPackageController.createSortedListTourPackages("","",0,null);
     }
 
     @Test(expected = TourPackageNullDAOException.class)

@@ -5,5 +5,5 @@ public enum TourPackageType {
     CRUISE,
     EXCURSION,
     RELAXATION,
-    SHOPPING
+    SHOPPING;
 }

@@ -21,7 +21,7 @@ public class TourPackageController {
         this.tourPackageDAO = tourPackageDAO;
     }
 
-    public List<TourPackage> createSortedListTourPackages(final String foodSystem, final String transport, final int numberOfDays, String typeTourPackage) throws TourPackageNullDAOException {
+    public List<TourPackage> createSortedListTourPackages(final String foodSystem, final String transport, final int numberOfDays, TourPackageType typeTourPackage) throws TourPackageNullDAOException {
 
         logger.info("Start execution method");
 
@@ -32,25 +32,8 @@ public class TourPackageController {
 
         List<TourPackage> tours = (List<TourPackage>) tourPackageDAO.getTourPackages();
 
-        if(typeTourPackage!=null&&!typeTourPackage.isEmpty()) {
-            switch (typeTourPackage.toLowerCase()) {
-                case "cruise":
-                    tours = tours.stream().filter((s) -> s instanceof CruiseTourPackage).collect(Collectors.toList());
-                    break;
-                case "shopping":
-                    tours = tours.stream().filter((s) -> s instanceof ShoppingTourPackage).collect(Collectors.toList());
-                    break;
-                case "relaxation":
-                    tours = tours.stream().filter((s) -> s instanceof RelaxationTourPackage).collect(Collectors.toList());
-                    break;
-                case "medical":
-                    tours = tours.stream().filter((s) -> s instanceof MedicalTourPackage).collect(Collectors.toList());
-                    break;
-                case "excursion":
-                    tours = tours.stream().filter((s) -> s instanceof ExcursionTourPackage).collect(Collectors.toList());
-                    break;
-                default: tours = new ArrayList<>();
-            }
+        if(typeTourPackage!=null) {
+            tours=tours.stream().filter((s)->s.getType().equals(typeTourPackage)).collect(Collectors.toList());
         }
 
         if(foodSystem!=null&&!foodSystem.isEmpty()) {

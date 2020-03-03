@@ -15,7 +15,7 @@ public class TourPackageDAOMock implements TourPackageDAO {
 
     static {
         StringBuilder jsonArrayShoppingTourPackage=new StringBuilder();
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("./src/test/resources/TestData"))){
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("./src/test/resources/TestTourPackageListData"))){
             while(bufferedReader.ready()) {
                 jsonArrayShoppingTourPackage.append(bufferedReader.readLine());
             }
