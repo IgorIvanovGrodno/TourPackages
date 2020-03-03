@@ -7,7 +7,7 @@ public abstract class TourPackage implements Comparable<TourPackage> {
     private String transport;
     private int numberOfDays;
     private int price;
-    protected static TourPackageType type;
+    protected TourPackageType type;
 
     public TourPackage(String foodSystem, String transport, int numberOfDays, int price) {
         this.foodSystem = foodSystem;
@@ -60,7 +60,7 @@ public abstract class TourPackage implements Comparable<TourPackage> {
 
     @Override
     public String toString() {
-        return getClass().getName()+"{" +
+        return type+"{" +
                 "foodSystem='" + foodSystem + '\'' +
                 ", transport='" + transport + '\'' +
                 ", numberOfDays=" + numberOfDays +

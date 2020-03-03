@@ -26,11 +26,11 @@ public class TourPackageDAOMock implements TourPackageDAO {
             //Create custom deserializer for deserialization List of Polymorphic Objects
             TourPackageDeserializer deserializer = new TourPackageDeserializer("type");
             //Add types for mapping
-            deserializer.registerBarnType("shopping", ShoppingTourPackage.class);
-            deserializer.registerBarnType("cruise", CruiseTourPackage.class);
-            deserializer.registerBarnType("relaxation", RelaxationTourPackage.class);
-            deserializer.registerBarnType("medical", MedicalTourPackage.class);
-            deserializer.registerBarnType("excursion", ExcursionTourPackage.class);
+            deserializer.registerBarnType("SHOPPING", ShoppingTourPackage.class);
+            deserializer.registerBarnType("CRUISE", CruiseTourPackage.class);
+            deserializer.registerBarnType("RELAXATION", RelaxationTourPackage.class);
+            deserializer.registerBarnType("MEDICAL", MedicalTourPackage.class);
+            deserializer.registerBarnType("EXCURSION", ExcursionTourPackage.class);
             Gson gson = new GsonBuilder()
                     .registerTypeAdapter(TourPackage.class, deserializer)
                     .create();
