@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.domain.*;
 import model.DAO.TourPackageDAO;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,15 +15,15 @@ public class TourPackageDAOMock implements TourPackageDAO {
     private static List<TourPackage> tours;
 
     static {
-        StringBuilder jsonArrayShoppingTourPackage=new StringBuilder();
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("./src/test/resources/TestTourPackageListData"))){
-            while(bufferedReader.ready()) {
+        StringBuilder jsonArrayShoppingTourPackage = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("./src/test/resources/TestTourPackageListData"))) {
+            while (bufferedReader.ready()) {
                 jsonArrayShoppingTourPackage.append(bufferedReader.readLine());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(jsonArrayShoppingTourPackage.length()>0){
+        if (jsonArrayShoppingTourPackage.length() > 0) {
             //Create custom deserializer for deserialization List of Polymorphic Objects
             TourPackageDeserializer deserializer = new TourPackageDeserializer("type");
             //Add types for mapping
@@ -34,7 +35,8 @@ public class TourPackageDAOMock implements TourPackageDAO {
             Gson gson = new GsonBuilder()
                     .registerTypeAdapter(TourPackage.class, deserializer)
                     .create();
-            tours = gson.fromJson(jsonArrayShoppingTourPackage.toString(), new TypeToken<List<TourPackage>>(){}.getType());
+            tours = gson.fromJson(jsonArrayShoppingTourPackage.toString(), new TypeToken<List<TourPackage>>() {
+            }.getType());
 
 
         }

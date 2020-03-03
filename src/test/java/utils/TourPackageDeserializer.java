@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TourPackageDeserializer  implements JsonDeserializer<TourPackage> {
+public class TourPackageDeserializer implements JsonDeserializer<TourPackage> {
     //The name of the field in the JSON file, which is used to determine the type of object
     private String tourPackageTypeElementName;
     private Gson gson;

@@ -5,7 +5,7 @@ import model.domain.*;
 import model.DAO.TourPackageDAO;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,31 +21,40 @@ public class TourPackageController {
         this.tourPackageDAO = tourPackageDAO;
     }
 
-    public List<TourPackage> createSortedListTourPackages(final String foodSystem, final String transport, final int numberOfDays, TourPackageType typeTourPackage) throws TourPackageNullDAOException {
+    /**
+     * This method selects tour packages according to parameters
+     * @param foodSystem
+     * @param transport
+     * @param numberOfDays
+     * @param typeTourPackage
+     * @return  Sorted list of selected travel packages
+     * @throws TourPackageNullDAOException
+     */
+    public List<TourPackage> selectTourPackages(final String foodSystem, final String transport, final int numberOfDays, TourPackageType typeTourPackage) throws TourPackageNullDAOException {
 
         logger.info("Start execution method");
 
-        if(tourPackageDAO ==null) {
+        if (tourPackageDAO == null) {
             logger.error("TourPackageDAO is null");
             throw new TourPackageNullDAOException();
         }
 
         List<TourPackage> tours = (List<TourPackage>) tourPackageDAO.getTourPackages();
 
-        if(typeTourPackage!=null) {
-            tours=tours.stream().filter((s)->s.getType().equals(typeTourPackage)).collect(Collectors.toList());
+        if (typeTourPackage != null) {
+            tours = tours.stream().filter((s) -> s.getType().equals(typeTourPackage)).collect(Collectors.toList());
         }
 
-        if(foodSystem!=null&&!foodSystem.isEmpty()) {
-            tours=tours.stream().filter((s)->s.getFoodSystem().equals(foodSystem)).collect(Collectors.toList());
+        if (foodSystem != null && !foodSystem.isEmpty()) {
+            tours = tours.stream().filter((s) -> s.getFoodSystem().equals(foodSystem)).collect(Collectors.toList());
         }
 
-        if(transport!=null&&!transport.isEmpty()){
-            tours=tours.stream().filter((s)->s.getTransport().equals(transport)).collect(Collectors.toList());
+        if (transport != null && !transport.isEmpty()) {
+            tours = tours.stream().filter((s) -> s.getTransport().equals(transport)).collect(Collectors.toList());
         }
 
-        if(numberOfDays>0){
-            tours=tours.stream().filter((s)->s.getNumberOfDays()==numberOfDays).collect(Collectors.toList());
+        if (numberOfDays > 0) {
+            tours = tours.stream().filter((s) -> s.getNumberOfDays() == numberOfDays).collect(Collectors.toList());
         }
 
         logger.info("End execution method");
@@ -58,7 +67,7 @@ public class TourPackageController {
     }
 
     public void setTourPackageDAO(TourPackageDAO tourPackageDAO) throws TourPackageNullDAOException {
-        if(tourPackageDAO ==null) {
+        if (tourPackageDAO == null) {
             logger.error("TourPackageDAO is null");
             throw new TourPackageNullDAOException();
         }

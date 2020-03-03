@@ -52,15 +52,15 @@ public abstract class TourPackage implements Comparable<TourPackage> {
         return type;
     }
 
-    public int compareTo(TourPackage p){
+    public int compareTo(TourPackage p) {
         int resultCompareType = getClass().getName().compareTo(p.getClass().getName());
-        if(resultCompareType==0) return price-p.getPrice();
+        if (resultCompareType == 0) return price - p.getPrice();
         else return resultCompareType;
     }
 
     @Override
     public String toString() {
-        return type+"{" +
+        return type + "{" +
                 "foodSystem='" + foodSystem + '\'' +
                 ", transport='" + transport + '\'' +
                 ", numberOfDays=" + numberOfDays +
