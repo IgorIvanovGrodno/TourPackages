@@ -2,6 +2,7 @@ import controller.TourPackageController;
 import exceptions.TourPackageNullDAOException;
 import model.domain.*;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.TourPackageDAOMock;
 
@@ -9,7 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TestTourPackageController {
-    private TourPackageController tourPackageController = new TourPackageController(new TourPackageDAOMock());
+    private static TourPackageController tourPackageController;
+
+    @BeforeClass
+    public static void setUp(){
+       tourPackageController= new TourPackageController(new TourPackageDAOMock());
+    }
 
     @Test
     public void testSelectFoodSystem() {
