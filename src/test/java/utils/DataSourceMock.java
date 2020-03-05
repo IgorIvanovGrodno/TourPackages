@@ -4,14 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.domain.*;
-import model.DAO.TourPackageDAO;
+import model.DAO.DataSource;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-public class TourPackageDAOMock implements TourPackageDAO {
+public class DataSourceMock implements DataSource {
     private static List<TourPackage> tours;
 
     static {
