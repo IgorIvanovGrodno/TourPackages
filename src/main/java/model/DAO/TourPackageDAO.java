@@ -5,6 +5,7 @@ import model.domain.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,10 +23,10 @@ public class TourPackageDAO {
 
     public List<TourPackage> selectTourPackages(final String foodSystem, final String transport, final int numberOfDays, TourPackageType typeTourPackage) throws TourPackageNullDataSourceException {
 
-        logger.info("Start execution method");
+        logger.debug("Start execution method with params: foodSystem=" + foodSystem + " transport=" + transport + " numberOfDays=" + numberOfDays + " typeTourPackage=" + typeTourPackage);
 
         if (dataSource == null) {
-            logger.error("Data source is null");
+            logger.error("Data source is null. StackTrace: "+Arrays.stream(Thread.currentThread().getStackTrace()).collect(Collectors.toList()));
             throw new TourPackageNullDataSourceException();
         }
 
@@ -47,8 +48,9 @@ public class TourPackageDAO {
             tours = tours.stream().filter((s) -> s.getNumberOfDays() == numberOfDays).collect(Collectors.toList());
         }
 
-        logger.info("End execution method");
-        return sortListTourPackages(tours);
+        List<TourPackage> resultList = sortListTourPackages(tours);
+        logger.debug("End execution method with result: " + resultList);
+        return resultList;
 
     }
 
@@ -62,7 +64,7 @@ public class TourPackageDAO {
 
     public void setDataSource(DataSource dataSource) throws TourPackageNullDataSourceException {
         if (dataSource == null) {
-            logger.error("Data source is null");
+            logger.error("Data source is null. StackTrace: "+ Arrays.stream(Thread.currentThread().getStackTrace()).collect(Collectors.toList()));
             throw new TourPackageNullDataSourceException();
         }
         this.dataSource = dataSource;

@@ -113,7 +113,7 @@ public class TestTourPackageDAO {
     }
 
     @Test
-    public void shouldReturnSortedAllTourPackages_whenSelectAllTourPackages() throws TourPackageNullDataSourceException {
+    public void shouldReturnSortedListAllTourPackages_whenSelectAllTourPackages() throws TourPackageNullDataSourceException {
         List<TourPackage> actualList = tourPackageDAO.selectTourPackages("", "", 0, null);
         List<TourPackage> expectedList = Arrays.asList(
                 new CruiseTourPackage("all", "ship", 10, 100),
