@@ -53,7 +53,7 @@ public abstract class TourPackage implements Comparable<TourPackage> {
     }
 
     public int compareTo(TourPackage p) {
-        int resultCompareType = getClass().getName().compareTo(p.getClass().getName());
+        int resultCompareType = type.toString().compareTo(p.getType().toString());
         if (resultCompareType == 0) return price - p.getPrice();
         else return resultCompareType;
     }
